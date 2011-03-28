@@ -1,0 +1,22 @@
+Archives List Generator for WordPress.com
+=========================================
+
+Author:      Laszlo Szathmary (jabba.laci@gmail.com)
+Last update: 2011-03-27 (yyyy-mm-dd)
+Version:     0.2.1
+
+Home page: http://ubuntuincident.wordpress.com/2011/02/23/archives-list-generator/
+GitHub:    https://github.com/jabbalaci/Archives-List-Generator
+
+This free software is copyleft licensed under the same terms as Python, or,
+at your option, under version 2 of the GPL license.
+
+CHANGELOG
+
+2011-03-27 v0.2.1: <!--more--> is added after the 5th entry
+2011-03-12 v0.2:   Some small improvements: categories are added too, they are
+                   shown first; after each category and tag there is an external 
+                   link to wordpress.com tags, thus you can check easily what others
+                   say about the same topic; category and tag links have tooltips.
+2011-02-23 v0.1:   initial version
+
