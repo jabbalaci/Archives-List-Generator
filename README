@@ -8,6 +8,9 @@ Version:     0.2.1
 Home page: http://ubuntuincident.wordpress.com/2011/02/23/archives-list-generator/
 GitHub:    https://github.com/jabbalaci/Archives-List-Generator
 
+See https://ubuntuincident.wordpress.com/archives/ for a sample output
+of the script.
+
 This free software is copyleft licensed under the same terms as Python, or,
 at your option, under version 2 of the GPL license.
 
