@@ -15,8 +15,8 @@ import datetime
 import unicodedata
 import getpass
 
-BLOG_NAME = 'ubuntuincident'
-#BLOG_NAME = 'pythonadventures'
+#BLOG_NAME = 'ubuntuincident'
+BLOG_NAME = 'pythonadventures'
 BLOG_URL = "https://%s.wordpress.com" % BLOG_NAME
 TOOLTIP_INNER = 'on %s' % BLOG_NAME
 TAG_URL = BLOG_URL + '/' + 'tag'
@@ -26,7 +26,7 @@ TOOLTIP_GLOBAL = 'on wordpress.com'
 USER_NAME = 'ubuntuincident'
 sys.stderr.write(BLOG_URL + "\n")
 USER_PASSWORD = getpass.getpass("%s password: " % USER_NAME)
-LIMIT = sys.maxint
+LIMIT = 10000000    # should be enough
 #LIMIT = 6
 
 #############################################################################
