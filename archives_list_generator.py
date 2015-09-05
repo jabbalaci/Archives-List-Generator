@@ -1,22 +1,21 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Author:      Laszlo Szathmary (jabba.laci@gmail.com)
-# Last update: 2011-03-27 (yyyy-mm-dd)
-# Version:     0.2.1
+# Last update: 2015-09-05 (yyyy-mm-dd)
+# Version:     0.3
 #
 # For more info, see the README file.
 
-import xmlrpclib
+import xmlrpc.client
 import sys
-import string
 import re
-import urllib
+import urllib.parse
 import datetime
 import unicodedata
 import getpass
 
-#BLOG_NAME = 'ubuntuincident'
-BLOG_NAME = 'pythonadventures'
+BLOG_NAME = 'ubuntuincident'
+#BLOG_NAME = 'pythonadventures'
 BLOG_URL = "https://%s.wordpress.com" % BLOG_NAME
 TOOLTIP_INNER = 'on %s' % BLOG_NAME
 TAG_URL = BLOG_URL + '/' + 'tag'
@@ -32,7 +31,7 @@ LIMIT = 10000000    # should be enough
 #############################################################################
 
 def get_posts():
-    server = xmlrpclib.ServerProxy(BLOG_URL + '/' + 'xmlrpc.php')
+    server = xmlrpc.client.ServerProxy(BLOG_URL + '/' + 'xmlrpc.php')
     return server.metaWeblog.getRecentPosts(BLOG_NAME, USER_NAME, USER_PASSWORD, LIMIT)
 
 def get_date(dateCreated):
@@ -54,7 +53,7 @@ def extract_data(post):
     data['title'] = title
     data['link'] = post['link']
     data['categories'] = post['categories']
-    data['tags'] = map(string.strip, post['mt_keywords'].split(','))
+    data['tags'] = [p.strip() for p in post['mt_keywords'].split(',')]
     if len(data['tags']) == 1 and data['tags'][0] == "":
         data['tags'] = []
     data['date'] = get_date(post['dateCreated'])
@@ -66,7 +65,7 @@ def extract_data(post):
 def simplify(tag):
     tag = tag.lower()
     tag = tag.replace(' ', '-')
-    return urllib.quote(tag)
+    return urllib.parse.quote(tag)
 
 def get_tags_with_links(tags):
     # tags is a list of tags
@@ -118,8 +117,8 @@ public_posts = 0
 private_posts = 0
 
 if len(posts) > 0:
-    print get_header()
-    print "<ol>"
+    print(get_header())
+    print("<ol>")
     for post in posts:
         data = extract_data(post)
 #        if data['title'] != "Intro":
@@ -130,11 +129,11 @@ if len(posts) > 0:
         elif data['status'] == 'publish':
             public_posts += 1
             if public_posts == 6:
-                print '<!--more-->'
+                print('<!--more-->')
             sys.stdout.write("<li>")
             sys.stdout.write( convert_to_html(data) )
             sys.stdout.write("</li>")
-            print
-    print "</ol>"
-    print get_number_of_posts(public_posts,  private_posts)
-    print get_footer()
+            print()
+    print("</ol>")
+    print(get_number_of_posts(public_posts,  private_posts))
+    print(get_footer())
